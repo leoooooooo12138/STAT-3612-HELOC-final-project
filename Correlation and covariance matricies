@@ -1,0 +1,41 @@
+import seaborn as sns
+corr=df.corr()
+ax=sns.heatmap(
+    corr,
+    vmin=-1, vmax=1, center=0,
+    cmap=sns.diverging_palette(20,220, n=20),
+    square=True
+)
+ax.set_xticklabels(
+    ax.get_xticklabels(),
+    rotation=45,
+    horizontalalignment='right'
+)
+
+
+# In[5]:
+
+
+import matplotlib.pyplot as plt
+
+
+plt.matshow(df.corr())
+plt.show()
+
+
+# In[9]:
+
+
+rs=np.random.RandomState(0)
+df=pd.DataFrame(rs.rand(23,23))
+corr=df.corr()
+corr.style.background_gradient(cmap='coolwarm')
+
+
+
+
+covmatrix=np.cov(df,bias=True)
+print(covmatrix)
+plt.figure(figsize=(20,20))
+sns.heatmap(covmatrix, annot=True, fmt='g')
+plt.show()
